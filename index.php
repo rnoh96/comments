@@ -4,7 +4,7 @@
     <? include_once $_SERVER["DOCUMENT_ROOT"]."/includes/head.html"; ?>
 </head>
 <body>
-<div class="container border my-5 p-1 col-6">
+<div class="container border my-5 p-1 col-sm-8 col-md-6">
         <div class="d-flex">
             <div class="profile-pic col-1 my-auto"><img src="img_source/profile_pic.jpg" class="img-thumbnail rounded-circle img-responsive" alt="profile picture"></div>
             <div class="profile_name col-auto my-auto mx-1"><span class="h5">Ryan Noh</span></div>
