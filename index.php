@@ -41,6 +41,7 @@
         function get_comments(){
             if (!$.fn.DataTable.isDataTable("#comments-table")) {
                 $('#comments-table').DataTable({
+                    // If you are wondering what fn and returnJson does, please have a look at line 15-26 in api.php file
                     ajax: {
                         url: './api/api.php',
                         type: 'POST',
@@ -49,10 +50,10 @@
                             d.returnJson = true;
                         },
                         dataSrc: function(d){
-                            // console.log(d.bz_data)
                             return d.bz_data
                         }
                     },
+                    // specify the columns to be displayed in the table.
                     columns: [
                             {
                                 data: 'id',
@@ -67,6 +68,8 @@
                                 className: 'text-left align-middle col-9'
                             }
                         ],
+                    // The columnDefs option is used to define specific behaviors for each column. 
+                    // In this case, it is used to make the first column (with a target index of 0) non-orderable, meaning it cannot be sorted by clicking on the column header.
                     columnDefs: [
                         {
                             targets: 0,
@@ -85,8 +88,7 @@
                         emptyTable: "No data to display."
                     },
                     searching: false,
-                    order: [[0, 'desc'],[1, 'desc'],[2, 'desc']],
-                    // ordering: false,
+                    order: [0, 'desc'],
                 })
             } else {
                 $("#comments-table").DataTable().ajax.reload();
@@ -95,7 +97,9 @@
 
         function post_comment() {
             let comment = $('#comment').val()
-            console.log(comment)
+            if(comment == '') {
+                return
+            }
             $.ajax({
                 url: './api/api.php',
                 type: 'POST',
