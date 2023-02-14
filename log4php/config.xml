@@ -1,0 +1,24 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+    <appender name="myConsoleAppender" class="LoggerAppenderConsole" />
+
+    <appender name="myFileAppender" class="LoggerAppenderRollingFile">
+        <layout class="LoggerLayoutPattern">
+           <!-- <param name="conversionPattern" value="%date [%level] %message%newline" /> -->
+           <param name="conversionPattern" value="%d{Y-m-d H:i:s,u}[%t][%F.%M():%L][%p] - %m%n" />
+           <!-- <param name="conversionPattern" value="[%d][%p][%C{3}.%M(%13F:%L)]- %m%n" /> -->
+           <!-- <param name="conversionPattern" value="%d{Y-m-d H:i:s} %F %p %m %n" /> -->
+        </layout>
+        <param name="file" value="C:\php\logs\wmis-php7.4-tst.log" />
+        <param name="maxFileSize" value="50MB" />
+        <param name="maxBackupIndex" value="10" />
+    </appender>    
+
+    <root>
+        <level value="DEBUG" />
+        <appender_ref ref="myConsoleAppender" />
+    </root>
+    <logger name="myLogger">
+        <level value="DEBUG" />
+        <appender_ref ref="myFileAppender" />
+    </logger>
+</configuration>
